@@ -5,6 +5,7 @@ window.B2BFX_CONFIG={
   careerEmail:"contactmaniixv@gmail.com",
   formRecipient:"contactmaniixv@gmail.com",
   careerFormRecipient:"contactmaniixv@gmail.com",
+  formNextUrl:"",
   instagram:"",
   linkedin:"",
   youtube:"",

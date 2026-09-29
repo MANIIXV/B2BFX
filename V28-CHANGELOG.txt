@@ -1,0 +1,8 @@
+B2BFX V28 — FORM SUBMISSION STABILITY
+
+- Removed the FormSubmit AJAX/JSON parsing path that could show “Unexpected server response” on GitHub Pages.
+- Contact and Career forms now use native FormSubmit POST.
+- Form action is assigned before submission from assets/config.js.
+- Added optional formNextUrl setting; leave blank until a live GitHub Pages/domain URL is known.
+- Contact and Career keep their current recipient: contactmaniixv@gmail.com
+- Career resume upload remains multipart/form-data.

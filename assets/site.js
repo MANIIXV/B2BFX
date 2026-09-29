@@ -125,7 +125,7 @@ document.documentElement.classList.add('js-ready');
   };
 
   // Static-host form handler (GitHub Pages compatible).
-  // Contact uses FormSubmit AJAX. Career uses native multipart POST for reliable file uploads.
+  // Both Contact and Career use native FormSubmit POST so GitHub Pages never needs PHP or JSON parsing.
   document.querySelectorAll('form[data-form]').forEach(form => {
     Object.entries(attribution).forEach(([key, value]) => {
       let field = form.querySelector('input[name="'+key+'"]');
@@ -150,21 +150,19 @@ document.documentElement.classList.add('js-ready');
       if (!started) { started = true; track('form_start', {form_type: formType}); }
     });
 
-    if (staticMode && formType === 'career') {
+    if (staticMode) {
       if (configuredRecipient) {
         form.action = 'https://formsubmit.co/' + encodeURIComponent(recipient);
-        form.target = '_self';
+        form.method = 'POST';
         const meta = (name, value) => {
-          let input = form.querySelector('input[name="'+name+'"]');
+          let input = form.querySelector('input[name=\"'+name+'\"]');
           if (!input) { input = document.createElement('input'); input.type='hidden'; input.name=name; form.appendChild(input); }
           input.value=value;
         };
-        meta('_subject', 'B2BFX Career Application');
+        meta('_subject', formType === 'career' ? 'B2BFX Career Application' : 'B2BFX Project Enquiry');
         meta('_template', 'table');
         meta('_url', location.href);
-        if (cfg.domain && /^https?:\/\//i.test(cfg.domain) && !cfg.domain.includes('YOUR-USERNAME')) {
-          meta('_next', cfg.domain.replace(/\/$/,'') + '/careers.html?applied=1');
-        }
+        if (cfg.formNextUrl && /^https?:\/\//i.test(cfg.formNextUrl)) meta('_next', cfg.formNextUrl);
       }
 
       form.addEventListener('submit', e => {
@@ -173,50 +171,19 @@ document.documentElement.classList.add('js-ready');
           if (status) status.textContent = 'Form is not configured yet. Add your email in assets/config.js.';
           return;
         }
+        if (!form.checkValidity()) { e.preventDefault(); form.reportValidity(); return; }
+        const replyField = form.querySelector('input[name=\"email\"]');
+        if (replyField) {
+          let replyMeta = form.querySelector('input[name=\"_replyto\"]');
+          if (!replyMeta) { replyMeta = document.createElement('input'); replyMeta.type='hidden'; replyMeta.name='_replyto'; form.appendChild(replyMeta); }
+          replyMeta.value = replyField.value.trim();
+        }
         track('generate_lead', {form_type: formType});
         if (button) { button.disabled = true; button.setAttribute('aria-busy','true'); }
       });
       return;
     }
 
-    form.addEventListener('submit', async e => {
-      e.preventDefault();
-      if (!form.checkValidity()) { form.reportValidity(); return; }
-
-      if (!configuredRecipient && staticMode) {
-        if (status) status.textContent = 'Form is not configured yet. Add your email in assets/config.js.';
-        return;
-      }
-
-      if (status) status.textContent = 'Sending…';
-      if (button) { button.disabled = true; button.setAttribute('aria-busy','true'); }
-
-      try {
-        const endpoint = 'https://formsubmit.co/ajax/' + encodeURIComponent(recipient);
-        const payload = new FormData(form);
-        payload.append('_subject', 'B2BFX Project Enquiry');
-        payload.append('_template', 'table');
-        payload.append('_url', location.href);
-
-        const response = await fetch(endpoint, {
-          method: 'POST',
-          body: payload,
-          headers: {'Accept':'application/json'}
-        });
-        const data = await response.json().catch(() => null);
-        if (!response.ok || !data || (data.success !== 'true' && data.success !== true)) {
-          throw new Error((data && (data.message || data.error)) || 'Unable to submit right now. Please try again.');
-        }
-
-        if (status) status.textContent = 'Thanks — your project enquiry has been sent.';
-        track('generate_lead', {form_type: formType});
-        form.reset();
-      } catch (err) {
-        if (status) status.textContent = err.message || 'Something went wrong. Please try again.';
-      } finally {
-        if (button) { button.disabled = false; button.removeAttribute('aria-busy'); }
-      }
-    });
   });
 
   document.querySelectorAll('[data-career-apply]').forEach(a => {

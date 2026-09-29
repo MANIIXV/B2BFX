@@ -49,9 +49,9 @@ V23 LAUNCH NOTES
 
 GITHUB PAGES FORM FIX (V25)
 ===========================
-V25 uses FormSubmit AJAX for Contact and Career forms because GitHub Pages does not execute PHP.
+V28 uses native FormSubmit POST for Contact and Career forms because GitHub Pages does not execute PHP. This avoids client-side JSON parsing errors.
 Set formRecipient in assets/config.js to the email inbox that should receive submissions.
-The first submission triggers a FormSubmit activation/confirmation email. Confirm it before testing again.
+The first submission triggers a FormSubmit activation/confirmation email. Confirm it before testing again. If you change the receiving email later, the new recipient must be activated again.
 Career resumes are sent as multipart form attachments; FormSubmit documents a 10MB combined file limit.
 
 Career application page: apply.html
