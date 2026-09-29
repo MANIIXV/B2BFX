@@ -1,0 +1,18 @@
+B2BFX V23 — TRUST, ACCESSIBILITY & SEARCH POLISH
+===============================================
+- Added Privacy Policy and Terms of Use pages.
+- Added skip-to-content accessibility link across HTML pages.
+- Added aria-current navigation state.
+- Added Organization/WebSite schema to the homepage and Organization schema to inner pages.
+- Added Service schema to service-detail pages.
+- Added Article schema to blog articles.
+- Enriched social preview metadata with image type, dimensions and alt text.
+- Added manifest and strict referrer metadata across pages.
+- Added stricter Apache headers and common server/config file protection.
+- Marked 404 page noindex/nofollow.
+- Refreshed sitemap with legal and detail pages.
+- Added /.well-known/security.txt.
+- Preserved the V22 visual system, forms, analytics hooks and PHP backend.
+- Removed the mbstring hard dependency in form sanitization so missing mbstring cannot cause a fatal form error.
+
+Important: review legal copy for your actual business practices before publishing it as final legal documentation.

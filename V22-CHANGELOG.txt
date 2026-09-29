@@ -1,0 +1,19 @@
+B2BFX V22 — LAUNCH POLISH
+==========================
+
+New in V22
+- Faster font loading: Google Fonts moved from CSS @import to document-level preconnect + stylesheet.
+- Favicon now uses the lightweight assets/favicon.png file instead of the large embedded data URI.
+- Homepage enquiry now captures phone + budget so the backend receives complete project context.
+- Forms automatically attach landing page, referrer and UTM attribution fields.
+- Added form_start, WhatsApp click and contact-action analytics events.
+- Added reduced-motion accessibility handling and stronger keyboard focus states.
+- Cursor is enabled only for fine pointers; touch devices retain the native cursor.
+- Added Apache security headers, compression and static-asset caching in root .htaccess.
+- Added site.webmanifest.
+- Added homepage logo preload for faster hero rendering.
+
+Important
+- The PHP mail flow still depends on your hosting mail configuration.
+- Replace placeholder emails/social URLs in assets/config.js and config.php before launch.
+- The .htaccess HTTPS redirect is commented out until SSL is confirmed on the domain.

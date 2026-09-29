@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://b2bfx.in/sitemap.xml

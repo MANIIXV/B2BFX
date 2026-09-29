@@ -1,0 +1,13 @@
+B2BFX V21 — LAUNCH CHECKLIST
+===============================
+[ ] Connect b2bfx.in to hosting and enable HTTPS
+[ ] Add contact + careers email in config.php
+[ ] Add Instagram / LinkedIn / YouTube / WhatsApp URLs in assets/config.js
+[ ] Add GA4 ID only if required
+[ ] Verify all 25 pages load on desktop + mobile
+[ ] Test Contact form on live PHP hosting
+[ ] Test Career form + resume upload on live PHP hosting
+[ ] Verify Open Graph preview with b2bfx-og.webp
+[ ] Submit /sitemap.xml to Google Search Console
+[ ] Replace concept case studies with real work/results
+[ ] Add Privacy Policy / Terms before broader lead collection
