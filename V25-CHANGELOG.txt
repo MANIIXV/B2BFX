@@ -1,0 +1,19 @@
+B2BFX V25 — GitHub Pages Form Fix
+
+Root cause fixed:
+- GitHub Pages cannot execute PHP, so submit-contact.php returned a GitHub Pages 404 HTML page. The old JSON parser converted that into "Unexpected server response."
+
+Fix:
+- Contact form now uses FormSubmit AJAX, which is designed for static hosting and returns JSON.
+- Career form uses FormSubmit native multipart POST so resume uploads work without PHP.
+- Added formRecipient and careerFormRecipient to assets/config.js.
+- First-time FormSubmit submissions require email activation/confirmation.
+- Existing UI, analytics, UTM attribution, SEO and responsive design preserved.
+
+CONFIG
+1. Edit assets/config.js.
+2. Set formRecipient to the inbox that should receive project enquiries.
+3. Set careerFormRecipient for applications (or leave it equal to formRecipient).
+4. Set domain to your GitHub Pages URL after the repository is live.
+5. Upload the package contents to the GitHub repository root.
+6. Submit the Contact form once and activate the FormSubmit email confirmation.

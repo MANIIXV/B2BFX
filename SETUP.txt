@@ -1,3 +1,18 @@
+B2BFX V27 — TEMPORARY EMAIL CONFIGURATION
+
+Contact enquiries and Career applications are configured to be delivered to:
+contactmaniixv@gmail.com
+
+This is temporary. Replace the email later in:
+assets/config.js
+
+Current values:
+formRecipient: "contactmaniixv@gmail.com"
+careerFormRecipient: "contactmaniixv@gmail.com"
+
+GitHub Pages does not execute PHP. The frontend forms use FormSubmit for static hosting. The first submission to a recipient may require email activation/confirmation from FormSubmit.
+
+For Career applications, the form is multipart and includes resume upload.
 B2BFX V21 — SETUP
 ====================
 
@@ -30,3 +45,14 @@ V23 LAUNCH NOTES
 - Submit the refreshed sitemap.xml in Google Search Console.
 - Review /.well-known/security.txt and replace the contact address when needed.
 - Review the legal pages with your own adviser before treating them as final legal documents.
+
+
+GITHUB PAGES FORM FIX (V25)
+===========================
+V25 uses FormSubmit AJAX for Contact and Career forms because GitHub Pages does not execute PHP.
+Set formRecipient in assets/config.js to the email inbox that should receive submissions.
+The first submission triggers a FormSubmit activation/confirmation email. Confirm it before testing again.
+Career resumes are sent as multipart form attachments; FormSubmit documents a 10MB combined file limit.
+
+Career application page: apply.html
+The Career page “Apply / Introduce yourself” button opens this dedicated page.

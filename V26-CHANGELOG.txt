@@ -1,0 +1,8 @@
+B2BFX V26 — Career Application Flow Fix
+
+- Career “Apply / Introduce yourself” CTA now opens a dedicated apply.html page.
+- Added GitHub Pages-compatible application page using the existing static form flow.
+- Added optional role prefill via ?role=...
+- Added career_apply_click analytics event.
+- Added apply.html to sitemap.xml.
+- Preserved existing design, SEO, analytics, forms and mobile behavior.

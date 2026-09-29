@@ -1,8 +1,10 @@
 window.B2BFX_CONFIG={
   siteName:"B2BFX®",
-  domain:"https://b2bfx.in",
-  contactEmail:"YOUR_CONTACT_EMAIL@example.com",
-  careerEmail:"YOUR_CAREERS_EMAIL@example.com",
+  domain:"https://YOUR-USERNAME.github.io/b2bfx",
+  contactEmail:"contactmaniixv@gmail.com",
+  careerEmail:"contactmaniixv@gmail.com",
+  formRecipient:"contactmaniixv@gmail.com",
+  careerFormRecipient:"contactmaniixv@gmail.com",
   instagram:"",
   linkedin:"",
   youtube:"",
